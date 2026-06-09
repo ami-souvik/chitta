@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface-2: #1a1a1a;
+    --border: #ffffff;
+    --text: #ffffff;
+    --text-muted: #888888;
+    --green: #4ade80;
+    --red: #ff4d4d;
+    --yellow: #fcd34d;
+    --purple: #a78bfa;
+    --orange: #fb923c;
+    --blue: #60a5fa;
+    --pink: #f472b6;
+    --shadow: 4px 4px 0px #ffffff;
+    --shadow-sm: 3px 3px 0px #ffffff;
+    --shadow-colored: 4px 4px 0px;
+    --radius: 0px;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-geist-sans), 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    font-family: var(--font-geist-sans), 'Inter', sans-serif;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--surface); }
+  ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: #555; }
+}
+
+@layer components {
+  /* Neo-brutal card */
+  .brute-card {
+    @apply bg-[#111111] border-2 border-white;
+    box-shadow: var(--shadow);
+  }
+
+  .brute-card-sm {
+    @apply bg-[#111111] border-2 border-white;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Neo-brutal button */
+  .brute-btn {
+    @apply border-2 border-white font-bold text-sm px-4 py-2 transition-all duration-100 active:translate-x-[3px] active:translate-y-[3px];
+    box-shadow: var(--shadow-sm);
+  }
+  .brute-btn:active {
+    box-shadow: none;
+  }
+  .brute-btn:hover {
+    @apply translate-x-[1px] translate-y-[1px];
+    box-shadow: 2px 2px 0px #ffffff;
+  }
+
+  /* Accent variants */
+  .brute-green  { @apply bg-[#4ade80] text-black border-2 border-white; box-shadow: var(--shadow-sm); }
+  .brute-red    { @apply bg-[#ff4d4d] text-white border-2 border-white; box-shadow: var(--shadow-sm); }
+  .brute-yellow { @apply bg-[#fcd34d] text-black border-2 border-white; box-shadow: var(--shadow-sm); }
+  .brute-purple { @apply bg-[#a78bfa] text-black border-2 border-white; box-shadow: var(--shadow-sm); }
+  .brute-orange { @apply bg-[#fb923c] text-black border-2 border-white; box-shadow: var(--shadow-sm); }
+  .brute-blue   { @apply bg-[#60a5fa] text-black border-2 border-white; box-shadow: var(--shadow-sm); }
+
+  /* Nav item active */
+  .nav-active {
+    @apply bg-[#4ade80] text-black font-bold border-2 border-white;
+    box-shadow: 3px 3px 0px #ffffff;
+  }
+
+  /* Input */
+  .brute-input {
+    @apply bg-[#1a1a1a] border-2 border-white text-white text-sm px-3 py-2 w-full outline-none placeholder:text-[#555];
+    transition: box-shadow 0.1s;
+  }
+  .brute-input:focus {
+    box-shadow: 3px 3px 0px #4ade80;
+    border-color: #4ade80;
+  }
+
+  /* Tag / badge */
+  .brute-tag {
+    @apply border border-white text-xs px-2 py-0.5 font-mono font-bold uppercase tracking-wide;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .font-mono-num { font-variant-numeric: tabular-nums; }
+}

@@ -12,7 +12,7 @@ import {
 const MOOD_EMOJI: Record<string, string> = { great: "😄", good: "🙂", neutral: "😐", bad: "😕", awful: "😞" };
 const MOOD_COLOR: Record<string, string> = { great: "#4ade80", good: "#a7f3d0", neutral: "#fcd34d", bad: "#fb923c", awful: "#ff4d4d" };
 
-const BruteTooltip = ({ active, payload }: any) => {
+const BruteTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ value: number }> }) => {
   if (!active || !payload?.length) return null;
   return (
     <div className="bg-[#111] border-2 border-white px-3 py-1.5 text-xs font-mono">

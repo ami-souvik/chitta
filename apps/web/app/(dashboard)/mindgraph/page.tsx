@@ -68,7 +68,7 @@ export default function MindGraphPage() {
       setNodes(flowNodes);
       setEdges(flowEdges);
     });
-  }, [getToken]);
+  }, [getToken, setEdges, setNodes]);
 
   const onNodeClick: NodeMouseHandler = useCallback(async (_, node) => {
     const raw = node.data.raw as GraphNode;

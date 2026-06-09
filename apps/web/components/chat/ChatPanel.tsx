@@ -104,7 +104,7 @@ export function ChatPanel() {
       const res = await fetch(`/api/chat/sessions/${sid}`, { headers: { Authorization: `Bearer ${t}` } });
       if (res.ok) {
         const data = await res.json();
-        setMessages(data.map((m: any) => ({
+        setMessages(data.map((m: ChatMessage) => ({
           id: m.id, role: m.role, content: m.content, created_at: m.created_at,
         })));
         setSessionId(sid);
@@ -255,9 +255,9 @@ export function ChatPanel() {
                     <p className="text-4xl">🧠</p>
                     <p className="text-[#888] font-mono text-xs leading-relaxed">
                       Log in plain text.<br />
-                      <span className="text-white">"spent ₹500 on food"</span><br />
-                      <span className="text-white">"slept 7 hours last night"</span><br />
-                      <span className="text-white">"idea: build X for Y"</span>
+                      <span className="text-white">{`"spent ₹500 on food"`}</span><br />
+                      <span className="text-white">{`"slept 7 hours last night"`}</span><br />
+                      <span className="text-white">{`"idea: build X for Y"`}</span>
                     </p>
                   </div>
                 )}

@@ -5,7 +5,7 @@ import { useAuth } from "@clerk/nextjs";
 import { apiGet, formatINR, formatDate } from "@/lib/api";
 import { FinanceEntry } from "@/lib/types";
 import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
+  Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell,
 } from "recharts";
 
@@ -16,7 +16,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   freelance: "#a78bfa", investment: "#60a5fa", other: "#888888",
 };
 
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ name: string; value: number }> }) => {
   if (active && payload?.length) {
     return (
       <div className="bg-[#111] border-2 border-white px-3 py-2 text-xs font-mono">

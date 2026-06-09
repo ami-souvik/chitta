@@ -1,10 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-async function authHeaders(): Promise<HeadersInit> {
-  // Clerk token is injected server-side via route handler proxy
-  return { "Content-Type": "application/json" };
-}
-
 export async function apiGet<T>(path: string, token: string): Promise<T> {
   const res = await fetch(`${API_URL}${path}`, {
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },

@@ -5,7 +5,8 @@ import { useAuth } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { apiGet, formatINR } from "@/lib/api";
 import Link from "next/link";
-import { ArrowRight, TrendingUp, TrendingDown, CheckSquare, Heart, BookOpen, Lightbulb } from "lucide-react";
+import { ArrowRight, TrendingUp, CheckSquare, Heart, BookOpen, Lightbulb } from "lucide-react";
+import { Task } from "@/lib/types";
 
 export default function DashboardPage() {
   const { user } = useUser();
@@ -21,7 +22,7 @@ export default function DashboardPage() {
       if (!t) return;
       apiGet<{ income: number; expenses: number; balance: number }>("/finance/summary?period=month", t)
         .then(setSummary).catch(() => {});
-      apiGet<any[]>("/tasks?status=pending&limit=100", t)
+      apiGet<Task[]>("/tasks?status=pending&limit=100", t)
         .then((d) => setTaskCount(d.length)).catch(() => {});
     });
   }, [getToken]);
@@ -46,7 +47,7 @@ export default function DashboardPage() {
         <h1 className="text-4xl lg:text-5xl font-black tracking-tight leading-none">
           {greeting}, {user?.firstName ?? "there"}<span className="text-[#4ade80]">.</span>
         </h1>
-        <p className="text-[#888] text-sm mt-2">What's on your mind today?</p>
+        <p className="text-[#888] text-sm mt-2">{"What's on your mind today?"}</p>
       </div>
 
       {/* Balance hero */}

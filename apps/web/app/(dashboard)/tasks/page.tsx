@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { apiGet, apiPatch, formatDate } from "@/lib/api";
 import { Task } from "@/lib/types";
-import { cn } from "@/lib/utils";
 import { Circle, Clock, CheckCircle2 } from "lucide-react";
 
 const STATUS_COLS: Task["status"][] = ["pending", "in_progress", "done"];
@@ -29,12 +28,12 @@ export default function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const { getToken } = useAuth();
 
-  useEffect(() => { load(); }, []);
-
-  async function load() {
+  const load = useCallback(async () => {
     const t = await getToken();
     if (t) apiGet<Task[]>("/tasks?limit=100", t).then(setTasks).catch(() => {});
-  }
+  }, [getToken]);
+
+  useEffect(() => { load(); }, [load]);
 
   async function advance(task: Task) {
     const next: Record<Task["status"], Task["status"]> = { pending: "in_progress", in_progress: "done", done: "done" };
